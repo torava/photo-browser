@@ -14,5 +14,5 @@ const mockPhotos = [
 
 test('renders photo list', async () => {
   render(<PhotoList photos={mockPhotos} />);
-  await screen.findByAltText(mockPhotos[0].title);
+  screen.getByAltText(mockPhotos[0].title);
 });

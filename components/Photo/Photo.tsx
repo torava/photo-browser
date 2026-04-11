@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 
-export async function Photo({ photo }: { photo: any }) {
+export function Photo({ photo }: { photo: any }) {
   return (
     <Box sx={{ height: '100%' }}>
       <Box
