@@ -12,5 +12,5 @@ const mockPhoto = {
 
 test('renders photo', async () => {
   render(<Photo photo={mockPhoto} />);
-  screen.getByText(mockPhoto.title);
+  expect(screen.getByText(mockPhoto.title)).toBeInTheDocument();
 });

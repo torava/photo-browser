@@ -14,5 +14,5 @@ const mockPhotos = [
 
 test('renders photo list', async () => {
   render(<PhotoList photos={mockPhotos} />);
-  screen.getByAltText(mockPhotos[0].title);
+  expect(screen.getByAltText(mockPhotos[0].title)).toBeInTheDocument();
 });
