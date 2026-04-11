@@ -1,4 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
+import { GlobalStyles } from '@mui/system';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -15,6 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CssBaseline />
+        <GlobalStyles
+          styles={{ html: { height: '100%' }, body: { height: '100%', backgroundColor: 'black', color: 'white' } }}
+        />
         {children}
       </body>
     </html>
