@@ -1,3 +1,4 @@
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import CssBaseline from '@mui/material/CssBaseline';
 import { GlobalStyles } from '@mui/system';
 import type { Metadata } from 'next';
@@ -15,11 +16,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <CssBaseline />
-        <GlobalStyles
-          styles={{ html: { height: '100%' }, body: { height: '100%', backgroundColor: 'black', color: 'white' } }}
-        />
-        {children}
+        <AppRouterCacheProvider>
+          <CssBaseline />
+          <GlobalStyles
+            styles={{ html: { height: '100%' }, body: { height: '100%', backgroundColor: 'black', color: 'white' } }}
+          />
+          {children}
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
