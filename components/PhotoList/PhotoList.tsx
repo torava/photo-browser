@@ -2,8 +2,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/system/Box';
 import Link from 'next/link';
 
-export async function PhotoList() {
-  const photos = await fetch('https://jsonplaceholder.typicode.com/photos').then((res) => res.json());
+export function PhotoList({ photos }: { photos: any[] }) {
   return (
     <Grid container>
       {photos.map((photo: any) => (

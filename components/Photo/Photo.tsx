@@ -2,8 +2,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 
-export async function Photo({ id }: { id: string }) {
-  const photo = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`).then((res) => res.json());
+export async function Photo({ photo }: { photo: any }) {
   return (
     <Box sx={{ height: '100%' }}>
       <Box
