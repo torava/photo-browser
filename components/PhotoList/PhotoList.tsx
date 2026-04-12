@@ -1,12 +1,11 @@
 'use client';
 
+import { API_BASE_URL, PHOTOS_PER_PAGE } from '@/utils/config';
 import { CircularProgress } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/system/Box';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
-const PHOTOS_PER_PAGE = 100;
 
 export function PhotoList() {
   const [photos, setPhotos] = useState<any[]>([]);
@@ -16,7 +15,7 @@ export function PhotoList() {
   useEffect(() => {
     async function fetchPhotos() {
       setPhotos(
-        await fetch(`https://jsonplaceholder.typicode.com/photos?_page=1&_limit=${PHOTOS_PER_PAGE}`).then((res) =>
+        await fetch(`${API_BASE_URL}/photos?_page=1&_limit=${PHOTOS_PER_PAGE}`).then((res) =>
           res.json()
         )
       );
@@ -27,7 +26,7 @@ export function PhotoList() {
   const fetchNextPage = async () => {
     if (!allLoaded) {
       const newPhotos = await fetch(
-        `https://jsonplaceholder.typicode.com/photos?_page=${photos.length / PHOTOS_PER_PAGE + 1}&_limit=${PHOTOS_PER_PAGE}`
+        `${API_BASE_URL}/photos?_page=${photos.length / PHOTOS_PER_PAGE + 1}&_limit=${PHOTOS_PER_PAGE}`
       ).then((res) => res.json());
       if (newPhotos.length) {
         setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);

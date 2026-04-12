@@ -1,7 +1,8 @@
 import { Photo } from '@/components/Photo/Photo';
+import { API_BASE_URL } from '@/utils/config';
 
 export default async function Home({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const photo = await fetch(`https://jsonplaceholder.typicode.com/photos/${id}`).then((res) => res.json());
+  const photo = await fetch(`${API_BASE_URL}/photos/${id}`).then((res) => res.json());
   return <Photo photo={photo} />;
 }
