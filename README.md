@@ -1,3 +1,9 @@
 # Photo Browser
 
-An application for browsing photos developed with Next.js, MUI and Github Copilot.
+An application for browsing photos developed with Next.js, MUI and Github Copilot based on [{JSON} Placeholder](https://jsonplaceholder.typicode.com/) schema.
+
+## Features
+- Infinite scrolling
+- Internationalization
+- User view
+- Album view
