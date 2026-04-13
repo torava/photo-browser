@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 
-export function Photo({ photo }: { photo: any }) {
+export function Photo({ photo, user }: { photo: any; user: any }) {
   return (
     <Box sx={{ height: '100%' }}>
       <Box
@@ -10,7 +10,7 @@ export function Photo({ photo }: { photo: any }) {
         alt={photo.title}
         sx={{ width: '100%', height: 'calc(100% - 48px)', objectFit: 'contain', verticalAlign: 'middle' }}
       />
-      <Typography sx={{ textAlign: 'center', my: 1 }}>{photo.title}</Typography>
+      <Typography sx={{ textAlign: 'center', my: 1 }}>{photo.title} (User: {user.name})</Typography>
     </Box>
   );
 }
