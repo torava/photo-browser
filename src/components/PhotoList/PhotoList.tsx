@@ -1,6 +1,6 @@
 'use client';
 
-import { API_BASE_URL, PHOTOS_PER_PAGE } from '@/utils/config';
+import { API_BASE_URL, PHOTOS_PER_PAGE } from '@/src/utils/config';
 import { CircularProgress } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/system/Box';

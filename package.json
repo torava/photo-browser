@@ -16,9 +16,12 @@
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^9.0.0",
     "@mui/material-nextjs": "^9.0.0",
+    "i18next": "^26.0.4",
     "next": "16.2.3",
+    "next-i18next": "^16.0.5",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-i18next": "^17.0.2"
   },
   "devDependencies": {
     "@fetch-mock/jest": "^0.2.20",

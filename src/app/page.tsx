@@ -1,4 +1,4 @@
-import { PhotoList } from '@/components/PhotoList/PhotoList';
+import { PhotoList } from '@/src/components/PhotoList/PhotoList';
 
 export default async function PhotoListPage() {
   return <PhotoList />;

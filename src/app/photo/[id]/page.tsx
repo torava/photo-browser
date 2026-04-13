@@ -1,5 +1,5 @@
-import { Photo } from '@/components/Photo/Photo';
-import { API_BASE_URL } from '@/utils/config';
+import { Photo } from '@/src/components/Photo/Photo';
+import { API_BASE_URL } from '@/src/utils/config';
 
 export default async function PhotoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
