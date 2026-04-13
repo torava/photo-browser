@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { mockPhoto } from '@/src/utils/mocks';
 import { mockUser } from '@/src/utils/mocks';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { NextIntlClientProvider } from 'next-intl';
+import messages from '@/src/messages/en.json';
 
 import { Photo } from './Photo';
 
@@ -13,7 +16,14 @@ jest.mock('next-intl', () => ({
   },
 }));
 
+const theme = createTheme();
+
 test('renders photo', async () => {
-  render(<Photo photo={mockPhoto} user={mockUser} />);
-  expect(screen.getByText(`${mockPhoto.title} (User: ${mockUser.name})`)).toBeInTheDocument();
+  render(
+    <ThemeProvider theme={theme}>
+        <Photo photo={mockPhoto} user={mockUser} />
+    </ThemeProvider>
+  );
+  expect(screen.getByText(mockPhoto.title, { exact: false })).toBeInTheDocument();
+  expect(screen.getByText(mockUser.name)).toBeInTheDocument();
 });

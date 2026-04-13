@@ -2,6 +2,7 @@ import fetchMock from 'fetch-mock';
 import { render, screen } from '@testing-library/react';
 
 import { PhotoList } from './PhotoList';
+import { mockPhotos } from '@/src/utils/mocks';
 
 // from https://kentcdodds.com/blog/stop-mocking-fetch
 async function mockFetch(url: string) {
