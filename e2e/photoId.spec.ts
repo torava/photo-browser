@@ -4,7 +4,7 @@ import { test } from './fixtures';
 import { mockPhoto, mockUser } from "./mocks";
 
 test('has description', async ({ page, mockServerRequest }) => {
-  await mockServerRequest.GET(/.*\/photos$/, {
+  await mockServerRequest.GET(/.*\/photos/, {
     body: mockPhoto,
   });
 

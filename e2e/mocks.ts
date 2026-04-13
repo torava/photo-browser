@@ -31,3 +31,11 @@ export const mockUser = {
     bs: 'harness real-time e-markets',
   },
 };
+
+export const mockAlbum = {
+  userId: 1,
+  id: 1,
+  title: 'quidem molestiae enim',
+};
+
+export const mockAlbums = [mockAlbum];
