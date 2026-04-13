@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { mockUser } from '@/src/utils/mocks';
+import { mockAlbum, mockAlbums, mockUser } from '@/src/utils/mocks';
 
 import { User } from './User';
 
@@ -12,13 +12,26 @@ jest.mock('next-intl', () => ({
       phone: 'Phone',
       address: 'Address',
       website: 'Website',
-      company: 'Company'
+      company: 'Company',
+      albums: 'Albums'
     };
     return translations[key] || key;
   },
 }));
 
 test('renders user', async () => {
-  render(<User user={mockUser} albums={[]} />);
+  render(<User user={mockUser} albums={mockAlbums} />);
   expect(screen.getByText(`User name: ${mockUser.username}`)).toBeInTheDocument();
+  expect(screen.getByText(`Full name: ${mockUser.name}`)).toBeInTheDocument();
+  expect(screen.getByText(`Email: ${mockUser.email}`)).toBeInTheDocument();
+  expect(screen.getByText(`Phone: ${mockUser.phone}`)).toBeInTheDocument();
+  expect(
+    screen.getByText(
+      `Address: ${mockUser.address.street} ${mockUser.address.suite}, ${mockUser.address.zipcode} ${mockUser.address.city}`
+    )
+  ).toBeInTheDocument();
+  expect(screen.getByText(`Website: ${mockUser.website}`)).toBeInTheDocument();
+  expect(screen.getByText(`Company: ${mockUser.company.name}`)).toBeInTheDocument();
+  expect(screen.getByText(`Albums:`)).toBeInTheDocument();
+  expect(screen.getByText(mockAlbum.title)).toBeInTheDocument();
 });

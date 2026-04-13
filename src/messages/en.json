@@ -9,6 +9,7 @@
     "phone": "Phone",
     "address": "Address",
     "website": "Website",
-    "company": "Company"
+    "company": "Company",
+    "albums": "Albums"
   }
 }

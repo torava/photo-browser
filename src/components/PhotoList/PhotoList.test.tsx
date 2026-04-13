@@ -2,7 +2,7 @@ import fetchMock from 'fetch-mock';
 import { render, screen } from '@testing-library/react';
 
 import { PhotoList } from './PhotoList';
-import { mockPhotos } from '@/src/utils/mocks';
+import { mockPhoto, mockPhotos } from '@/src/utils/mocks';
 
 // from https://kentcdodds.com/blog/stop-mocking-fetch
 async function mockFetch(url: string) {
@@ -25,5 +25,5 @@ beforeEach(() => (window.fetch as jest.Mock).mockImplementation(mockFetch))
 
 test('renders photo list', async () => {
   render(<PhotoList />);
-  expect(await screen.findByAltText(mockPhotos[0].title)).toBeInTheDocument();
+  expect(await screen.findByAltText(mockPhoto.title)).toBeInTheDocument();
 });

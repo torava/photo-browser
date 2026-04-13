@@ -32,7 +32,7 @@ export function User({ user, albums }: { user: any; albums: any[] }) {
         </Typography>
       </Box>
       <Box sx={{ p: 1 }}>
-        <Typography>Albums:</Typography>
+        <Typography>{t('albums')}:</Typography>
         <Box component="ul">
           {albums.map((album) => (
             <Typography component="li" key={album.id}>
