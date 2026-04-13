@@ -35,6 +35,6 @@ const mockUser = {
 };
 
 test('renders photo', async () => {
-  render(<Photo photo={mockPhoto} user={mockUser} />);
+  render(<Photo dict={{ user: 'User' }}photo={mockPhoto} user={mockUser} />);
   expect(screen.getByText(`${mockPhoto.title} (User: ${mockUser.name})`)).toBeInTheDocument();
 });
