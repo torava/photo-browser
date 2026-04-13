@@ -3,16 +3,6 @@ import { render, screen } from '@testing-library/react';
 
 import { PhotoList } from './PhotoList';
 
-const mockPhotos = [
-  {
-    albumId: 1,
-    id: 1,
-    title: 'accusamus beatae ad facilis cum similique qui sunt',
-    url: 'https://via.placeholder.com/600/92c952',
-    thumbnailUrl: 'https://via.placeholder.com/150/92c952',
-  },
-];
-
 // from https://kentcdodds.com/blog/stop-mocking-fetch
 async function mockFetch(url: string) {
 	switch (url) {
