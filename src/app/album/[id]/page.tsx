@@ -6,11 +6,11 @@ import { getTranslations } from 'next-intl/server';
 export default async function PhotoListPage({ params }: PageProps<'/album/[id]'>) {
   const t = await getTranslations();
   const { id } = await params;
-  const albums = await fetch(`${API_BASE_URL}/albums/${id}`).then((res) => res.json());
+  const album = await fetch(`${API_BASE_URL}/albums/${id}`).then((res) => res.json());
   return (
     <>
-      <NavigationBar title={`${t('album')}: ${albums.title}`} />
-      <PhotoList path={`/albums/${id}/photos`} />;
+      <NavigationBar title={`${t('album')}: ${album.title}`} />
+      <PhotoList path={`/albums/${id}/photos`} album={album} />;
     </>
   );
 }

@@ -4,6 +4,12 @@ import { render, screen } from '@testing-library/react';
 import { PhotoList } from './PhotoList';
 import { mockPhoto, mockPhotos } from '@/src/utils/mocks';
 
+jest.mock('next-intl', () => ({
+  useTranslations: () => (key: string) => {
+    return key;
+  },
+}));
+
 // from https://kentcdodds.com/blog/stop-mocking-fetch
 async function mockFetch(url: string) {
 	switch (url) {

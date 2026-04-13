@@ -3,11 +3,15 @@
 import { AppBar, styled, Toolbar, Typography } from "@mui/material";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useEffect } from "react";
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 export function NavigationBar({ title }: { title?: string }) {
   const t = useTranslations();
+  useEffect(() => {
+      document.title = t('title');
+    }, []);
   return (
     <>
     <AppBar sx={{ backgroundColor: 'black' }} position="fixed">

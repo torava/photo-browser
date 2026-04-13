@@ -4,10 +4,12 @@ import { API_BASE_URL, PHOTOS_PER_PAGE } from '@/src/utils/config';
 import { CircularProgress } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/system/Box';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export function PhotoList({ path = '/photos' }: { path?: string }) {
+export function PhotoList({ path = '/photos', album }: { path?: string; album?: any }) {
+  const t = useTranslations();
   const [photos, setPhotos] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -55,6 +57,12 @@ export function PhotoList({ path = '/photos' }: { path?: string }) {
     window.removeEventListener('scroll', onScroll);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (album) {
+      document.title = `${album.title} / ${t('title')}`;
+    }
   }, []);
 
   return (

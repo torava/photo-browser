@@ -3,9 +3,14 @@
 import { Box, Link, Typography } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import NextLink from 'next/link';
+import { useEffect } from 'react';
 
 export function User({ user, albums }: { user: any; albums: any[] }) {
+  const tCommon = useTranslations();
   const t = useTranslations('User');
+  useEffect(() => {
+    document.title = `${user.name} / ${tCommon('title')}`;
+  }, []);
   return (
     <>
       <Box sx={{ p: 1 }}>

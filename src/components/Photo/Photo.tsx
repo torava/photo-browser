@@ -18,6 +18,10 @@ export function Photo({ photo, user }: { photo: any; user: any }) {
     setDescriptionHeight(ref.current?.clientHeight || 0);
   });
 
+  useEffect(() => {
+    document.title = `${photo.title} / ${t('title')}`;
+  }, []);
+
   return (
     <Box sx={{ height: `calc(100% - ${isSm ? 56 : 64}px)` }}>
       <Box
