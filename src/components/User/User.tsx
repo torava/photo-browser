@@ -21,16 +21,20 @@ export function User({ user, albums }: { user: any; albums: any[] }) {
           {t('name')}: {user.name}
         </Typography>
         <Typography>
-          {t('email')}: {user.email}
+          {t('email')}: <Link component={NextLink} href={`mailto:${user.email}`}>{user.email}</Link>
         </Typography>
         <Typography>
-          {t('phone')}: {user.phone}
+          {t('phone')}: <Link component={NextLink} href={`tel:${user.phone}`}>{user.phone}</Link>
         </Typography>
         <Typography>
-          {t('address')}: {user.address.street} {user.address.suite}, {user.address.zipcode} {user.address.city}
+          {t('address')}: <Link href={`https://www.google.com/maps/search/${encodeURIComponent(`${user.address.street} ${user.address.suite}, ${user.address.zipcode} ${user.address.city}`)}`} target="_blank">
+            {user.address.street} {user.address.suite}, {user.address.zipcode} {user.address.city}
+          </Link>
         </Typography>
         <Typography>
-          {t('website')}: {user.website}
+          {t('website')}: <Link href={user.website} target="_blank">
+            {user.website}
+          </Link>
         </Typography>
         <Typography>
           {t('company')}: {user.company.name}
