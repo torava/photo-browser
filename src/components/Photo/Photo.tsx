@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@mui/material';
+import { Link, useMediaQuery } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 import { useTranslations } from 'next-intl';
@@ -8,9 +8,10 @@ import NextLink from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 export function Photo({ photo, user }: { photo: any; user: any }) {
-  const t = useTranslations('Photo');
+  const t = useTranslations();
   const [descriptionHeight, setDescriptionHeight] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const isSm = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   // from https://stackoverflow.com/a/54841876
   useEffect(() => {
@@ -18,7 +19,7 @@ export function Photo({ photo, user }: { photo: any; user: any }) {
   });
 
   return (
-    <Box sx={{ height: 'calc(100% - 40px)' }}>
+    <Box sx={{ height: `calc(100% - ${isSm ? 56 : 64}px)` }}>
       <Box
         component="img"
         src={`https://picsum.photos/4096/2160?${photo.id}`}

@@ -19,6 +19,6 @@ jest.mock('next-intl', () => ({
 }));
 
 test('renders user', async () => {
-  render(<User user={mockUser} />);
+  render(<User user={mockUser} albums={[]} />);
   expect(screen.getByText(`User name: ${mockUser.username}`)).toBeInTheDocument();
 });
