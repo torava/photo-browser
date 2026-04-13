@@ -2,6 +2,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import CssBaseline from '@mui/material/CssBaseline';
 import { GlobalStyles } from '@mui/system';
 import type { Metadata } from 'next';
+import { NextIntlClientProvider } from 'next-intl';
 import { headers } from 'next/headers';
 
 if (process.env.VERCEL_ENV !== 'production') {
@@ -26,7 +27,9 @@ export default async function RootLayout({
           <GlobalStyles
             styles={{ html: { height: '100%' }, body: { height: '100%', backgroundColor: 'black', color: 'white' } }}
           />
-          {children}
+          <NextIntlClientProvider>
+            {children}
+          </NextIntlClientProvider>
         </AppRouterCacheProvider>
       </body>
     </html>

@@ -2,8 +2,10 @@
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
+import { useTranslations } from 'next-intl';
 
-export function Photo({ dict, photo, user }: { dict: any; photo: any; user: any }) {
+export function Photo({ photo, user }: { photo: any; user: any }) {
+  const t = useTranslations();
   return (
     <Box sx={{ height: '100%' }}>
       <Box
@@ -12,7 +14,7 @@ export function Photo({ dict, photo, user }: { dict: any; photo: any; user: any 
         alt={photo.title}
         sx={{ width: '100%', height: 'calc(100% - 48px)', objectFit: 'contain', verticalAlign: 'middle' }}
       />
-      <Typography sx={{ textAlign: 'center', my: 1 }}>{photo.title} ({dict.user}: {user.name})</Typography>
+      <Typography sx={{ textAlign: 'center', my: 1 }}>{photo.title} ({t('user')}: {user.name})</Typography>
     </Box>
   );
 }

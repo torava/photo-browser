@@ -1,8 +1,4 @@
-import { render, screen } from '@testing-library/react';
-
-import { Photo } from './Photo';
-
-const mockPhoto = {
+export const mockPhoto = {
   albumId: 1,
   id: 1,
   title: 'accusamus beatae ad facilis cum similique qui sunt',
@@ -10,7 +6,9 @@ const mockPhoto = {
   thumbnailUrl: 'https://via.placeholder.com/150/92c952',
 };
 
-const mockUser = {
+export const mockPhotos = [mockPhoto];
+
+export const mockUser = {
   id: 1,
   name: 'Leanne Graham',
   username: 'Bret',
@@ -33,17 +31,3 @@ const mockUser = {
     bs: 'harness real-time e-markets',
   },
 };
-
-jest.mock('next-intl', () => ({
-  useTranslations: () => (key: string) => {
-    const translations: Record<string, string> = {
-      user: 'User',
-    };
-    return translations[key] || key;
-  },
-}));
-
-test('renders photo', async () => {
-  render(<Photo photo={mockPhoto} user={mockUser} />);
-  expect(screen.getByText(`${mockPhoto.title} (User: ${mockUser.name})`)).toBeInTheDocument();
-});
