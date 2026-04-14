@@ -11,7 +11,7 @@ test('has title', async ({ page, mockServerRequest }) => {
     body: mockAlbums,
   });
 
-  await page.goto('http://localhost:3000/album?id=1');
+  await page.goto('/album?id=1');
 
   await expect(page.getByText(`Album: ${mockAlbum.title}`)).toBeVisible();
 });
@@ -24,7 +24,7 @@ test('has alt text', async ({ page, mockServerRequest }) => {
     body: mockAlbums,
   });
 
-  await page.goto('http://localhost:3000/album?id=1');
+  await page.goto('/album?id=1');
 
   await expect(page.getByAltText(mockPhoto.title)).toBeVisible();
 });

@@ -8,7 +8,7 @@ test('has alt text', async ({ page, mockServerRequest }) => {
     body: mockPhotos,
   });
 
-  await page.goto('http://localhost:3000');
+  await page.goto('/');
 
   await expect(page.getByAltText(mockPhoto.title)).toBeVisible();
 });
