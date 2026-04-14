@@ -1,7 +1,7 @@
 'use client';
 
 import { API_BASE_URL } from '@/src/utils/config';
-import { Link, useMediaQuery } from '@mui/material';
+import { CircularProgress, Link, useMediaQuery } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/system/Box';
 import { useTranslations } from 'next-intl';
@@ -34,7 +34,7 @@ export function Photo() {
       };
       fetchUser();
     }
-  });
+  }, [photo]);
 
   // from https://stackoverflow.com/a/54841876
   useEffect(() => {
@@ -45,7 +45,7 @@ export function Photo() {
     document.title = `${photo?.title} / ${t('title')}`;
   }, [photo]);
 
-  return (
+  return photo ? (
     <Box sx={{ height: `calc(100% - ${isSm ? 56 : 64}px)` }}>
       <Box
         component="img"
@@ -68,5 +68,5 @@ export function Photo() {
         </Typography>
       )}
     </Box>
-  );
+  ) : <CircularProgress sx={{ m: 1 }} />;
 }
