@@ -38,6 +38,8 @@ jobs:
           ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
     - name: Build project
       run: npm run build
+      env:
+        PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
     #- name: Install Playwright Browsers
     #  run: npx playwright install --with-deps
     #- name: Run Playwright tests
@@ -45,11 +47,11 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./build
+        path: ./out
     #- uses: actions/upload-artifact@v4
     #  if: ${{ !cancelled() }}
     #  with:
-    #    name: playwright-report
+    #   name: playwright-report
     #    path: playwright-report/
     #    retention-days: 30
   deploy:
