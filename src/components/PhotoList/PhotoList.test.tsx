@@ -26,8 +26,8 @@ async function mockFetch(url: string) {
 	}
 }
 
-beforeAll(() => jest.spyOn(global, 'fetch'))
-beforeEach(() => (global.fetch as jest.Mock).mockImplementation(mockFetch))
+// from https://www.codementor.io/@chihebnabil/complete-guide-to-mocking-fetch-in-jest-2lejnjl4bs
+global.fetch = jest.fn().mockImplementation(mockFetch);
 
 test('renders photo list', async () => {
   render(<PhotoList />);
