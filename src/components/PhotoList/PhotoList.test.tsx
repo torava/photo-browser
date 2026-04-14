@@ -26,8 +26,8 @@ async function mockFetch(url: string) {
 	}
 }
 
-beforeAll(() => jest.spyOn(window, 'fetch'))
-beforeEach(() => (window.fetch as jest.Mock).mockImplementation(mockFetch))
+beforeAll(() => jest.spyOn(global, 'fetch'))
+beforeEach(() => (global.fetch as jest.Mock).mockImplementation(mockFetch))
 
 test('renders photo list', async () => {
   render(<PhotoList />);
