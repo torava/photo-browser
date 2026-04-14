@@ -8,7 +8,7 @@ test('has description', async ({ page, mockServerRequest }) => {
     body: mockPhoto,
   });
 
-  await page.goto('http://localhost:3000/photo/1');
+  await page.goto('http://localhost:3000/photo?id=1');
 
   await expect(page.getByText(`${mockPhoto.title} (User: ${ mockUser.name})`, { exact: true })).toBeVisible();
 });
