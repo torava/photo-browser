@@ -1,8 +1,9 @@
-import fetchMock from 'fetch-mock';
 import { render, screen } from '@testing-library/react';
+import { mockPhoto, mockPhotos } from '@/src/utils/mocks';
+import * as mockRouter from 'next-router-mock';
 
 import { PhotoList } from './PhotoList';
-import { mockPhoto, mockPhotos } from '@/src/utils/mocks';
+import { API_BASE_URL } from '@/src/utils/config';
 
 jest.mock('next-intl', () => ({
   useTranslations: () => (key: string) => {
@@ -10,10 +11,21 @@ jest.mock('next-intl', () => ({
   },
 }));
 
+const useRouter = mockRouter.useRouter;
+
+jest.mock('next/navigation', () => ({
+	...mockRouter,
+	useSearchParams: () => {
+		const router = useRouter();
+		const path = router.query;
+		return new URLSearchParams(path as never);
+	},
+}));
+
 // from https://kentcdodds.com/blog/stop-mocking-fetch
 async function mockFetch(url: string) {
 	switch (url) {
-		case 'https://jsonplaceholder.typicode.com/photos?_page=1&_limit=100': {
+		case `${API_BASE_URL}/photos?_page=1&_limit=100`: {
 			return {
 				ok: true,
 				status: 200,

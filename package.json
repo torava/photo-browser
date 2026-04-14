@@ -10,7 +10,6 @@
     "test": "jest",
     "e2e": "playwright test",
     "deploy": "next build && mkdir -p dist/server/app/_next && cp -r dist/static dist/server/app/_next/"
-
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -20,11 +19,11 @@
     "@mui/material-nextjs": "^9.0.0",
     "next": "16.2.3",
     "next-intl": "^4.9.1",
+    "next-router-mock": "^1.0.5",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@fetch-mock/jest": "^0.2.20",
     "@playwright/test": "^1.59.1",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

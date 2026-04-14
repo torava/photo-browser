@@ -47,7 +47,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./dist/server/app
+        path: ./out
     #- uses: actions/upload-artifact@v4
     #  if: ${{ !cancelled() }}
     #  with:

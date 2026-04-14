@@ -7,35 +7,57 @@ import Box from '@mui/system/Box';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { NavigationBar } from '../NavigationBar/NavigationBar';
+import { useSearchParams } from 'next/navigation';
 
-export function PhotoList({ path = '/photos', album }: { path?: string; album?: any }) {
+export function PhotoList({ isAlbum }: { isAlbum?: boolean }) {
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
+  const [album, setAlbum] = useState<any>();
   const t = useTranslations();
   const [photos, setPhotos] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allLoaded, setAllLoaded] = useState(false);
+  const path = isAlbum ? `/albums/${id}/photos` : '/photos';
 
   useEffect(() => {
-    async function fetchPhotos() {
-      setPhotos(
-        await fetch(`${API_BASE_URL}${path}?_page=1&_limit=${PHOTOS_PER_PAGE}`).then((res) =>
-          res.json()
-        )
-      );
+    async function fetchAlbum() {
+      try {
+        setAlbum(await fetch(`${API_BASE_URL}/albums/${id}`).then((res) => res.json()));
+      } catch (error) {
+        console.error(error);
+      }
     }
+    async function fetchPhotos() {
+      try {
+        setPhotos(
+          await fetch(`${API_BASE_URL}${path}?_page=1&_limit=${PHOTOS_PER_PAGE}`).then((res) =>
+            res.json()
+          )
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    if (isAlbum) fetchAlbum();
     fetchPhotos();
   }, []);
 
   const fetchNextPage = async () => {
     if (!allLoaded) {
-      const newPhotos = await fetch(
-        `${API_BASE_URL}${path}?_page=${page + 1}&_limit=${PHOTOS_PER_PAGE}`
-      ).then((res) => res.json());
-      if (newPhotos.length) {
-        setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
-        setPage(page + 1);
-      } else {
-        setAllLoaded(true);
+      try {
+        const newPhotos = await fetch(
+          `${API_BASE_URL}${path}?_page=${page + 1}&_limit=${PHOTOS_PER_PAGE}`
+        ).then((res) => res.json());
+        if (newPhotos.length) {
+          setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
+          setPage(page + 1);
+        } else {
+          setAllLoaded(true);
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
     setLoading(false);
@@ -67,10 +89,11 @@ export function PhotoList({ path = '/photos', album }: { path?: string; album?: 
 
   return (
     <>
+      <NavigationBar title={album?.title && `${t('album')}: ${album.title}`} />
       <Grid container>
         {photos.map((photo: any) => (
           <Grid key={photo.id} size={{ xs: 12, md: 4 }}>
-            <Link href={`/photo/${photo.id}`}>
+            <Link href={`/photo?id=${photo.id}`}>
               <Box
                 component="img"
                 src={`https://picsum.photos/1680/1050?${photo.id}`}
