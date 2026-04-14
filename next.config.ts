@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: process.env.PAGES_BASE_PATH,
+  basePath: '/photo-browser',
 };
 
 const withNextIntl = createNextIntlPlugin();
