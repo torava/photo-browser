@@ -82,14 +82,14 @@ export function PhotoList({ isAlbum }: { isAlbum?: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (album) {
-      document.title = `${album.title} / ${t('title')}`;
+    if (isAlbum) {
+      document.title = `${t('album')} / ${t('title')}`;
     }
   }, []);
 
   return (
     <>
-      <NavigationBar title={album?.title && `${t('album')}: ${album.title}`} />
+      <NavigationBar title={isAlbum ? t('album') : undefined} />
       <Grid container>
         {photos.map((photo: any) => (
           <Grid key={photo.id} size={{ xs: 12, md: 4 }}>

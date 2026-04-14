@@ -26,12 +26,12 @@ export function User() {
   }, []);
   useEffect(() => {
     if (user) {
-      document.title = `${user.name} / ${tCommon('title')}`;
+      document.title = `${tCommon('user')} / ${tCommon('title')}`;
     }
   }, [user]);
   return (
     <>
-      <NavigationBar title={user?.name && `${tCommon('user')}: ${user.name}`} />
+      <NavigationBar title={tCommon('user')} />
       <Box sx={{ p: 1 }}>
         <Typography>
           {t('username')}: {user?.username}

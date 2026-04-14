@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import NextLink from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { NavigationBar } from '../NavigationBar/NavigationBar';
 
 export function Photo() {
   const searchParams = useSearchParams();
@@ -42,31 +43,38 @@ export function Photo() {
   });
 
   useEffect(() => {
-    document.title = `${photo?.title} / ${t('title')}`;
+    document.title = `${t('photo')} / ${t('title')}`;
   }, [photo]);
 
-  return photo ? (
-    <Box sx={{ height: `calc(100% - ${isSm ? 56 : 64}px)` }}>
-      <Box
-        component="img"
-        src={`https://picsum.photos/4096/2160?${photo?.id}`}
-        alt={photo?.title}
-        sx={{
-          width: '100%',
-          height: `calc(100% - ${descriptionHeight}px - 16px)`,
-          objectFit: 'contain',
-          verticalAlign: 'middle',
-        }}
-      />
-      {photo?.title && user?.name && (
-        <Typography ref={ref} sx={{ textAlign: 'center', my: 1 }}>
-          {photo.title} ({t('user')}:{' '}
-          <Link component={NextLink} href={`/user?id=${user?.id}`}>
-            {user.name}
-          </Link>
-          )
-        </Typography>
+  return (
+    <>
+      <NavigationBar title={t('photo')} />
+      {photo ? (
+        <Box sx={{ height: `calc(100% - ${isSm ? 56 : 64}px)` }}>
+          <Box
+            component="img"
+            src={`https://picsum.photos/4096/2160?${photo?.id}`}
+            alt={photo?.title}
+            sx={{
+              width: '100%',
+              height: `calc(100% - ${descriptionHeight}px - 16px)`,
+              objectFit: 'contain',
+              verticalAlign: 'middle',
+            }}
+          />
+          {photo?.title && user?.name && (
+            <Typography ref={ref} sx={{ textAlign: 'center', my: 1 }}>
+              {photo.title} ({t('user')}:{' '}
+              <Link component={NextLink} href={`/user?id=${user?.id}`}>
+                {user.name}
+              </Link>
+              )
+            </Typography>
+          )}
+        </Box>
+      ) : (
+        <CircularProgress sx={{ m: 1 }} />
       )}
-    </Box>
-  ) : <CircularProgress sx={{ m: 1 }} />;
+    </>
+  );
 }

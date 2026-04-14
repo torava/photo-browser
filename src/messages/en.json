@@ -1,6 +1,7 @@
 {
   "title": "Photo Browser",
   "user": "User",
+  "photo": "Photo",
   "album": "Album",
   "User": {
     "username": "User name",

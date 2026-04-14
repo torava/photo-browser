@@ -5,7 +5,6 @@ import { Suspense } from 'react';
 export default async function PhotoPage() {
   return (
     <Suspense>
-      <NavigationBar />
       <Photo />
     </Suspense>
   );
