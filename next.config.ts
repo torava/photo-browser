@@ -2,8 +2,7 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
-  distDir: 'build',
+  distDir: 'dist',
   basePath: process.env.PAGES_BASE_PATH,
 };
 

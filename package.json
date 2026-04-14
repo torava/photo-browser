@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "jest",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "deploy": "next build && mkdir -p dist/server/app/_next && cp -r dist/static dist/server/app/_next/"
+
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

@@ -37,7 +37,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
     - name: Build project
-      run: npm run build
+      run: npm run deploy
       env:
         PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
     #- name: Install Playwright Browsers
